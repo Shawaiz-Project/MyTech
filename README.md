@@ -18,21 +18,6 @@ A comprehensive company website with a complete admin panel for managing all con
 ### Accessing the Website
 
 **Public Website:** Click the webview link to see your website live
-
-**Admin Panel:** Navigate to `/admin/login` in your browser
-
-### Default Admin Credentials
-
-```
-Username: Shawaiz
-Email: 231980079@gift.edu.pk
-Password: Shawaiz231980079
-```
-
-⚠️ **IMPORTANT:** Change your password immediately after first login via the Admin Profile page.
-
----
-
 ## 💻 Website Features
 
 ### ✨ Global Features
