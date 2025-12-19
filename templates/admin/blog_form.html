@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block page_title %}{{ 'Edit' if blog else 'Add' }} Blog{% endblock %}
+{% block content %}
+<div class="form-card">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" value="{{ blog.title if blog else '' }}" required>
+        </div>
+        <div class="form-group">
+            <label>Cover Image</label>
+            <input type="file" name="cover_image" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label>Content</label>
+            <textarea name="content" rows="10">{{ blog.content if blog else '' }}</textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Tags (comma-separated)</label>
+                <input type="text" name="tags" value="{{ blog.tags if blog else '' }}">
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                    <option value="published" {{ 'selected' if blog and blog.status == 'published' else '' }}>Published</option>
+                    <option value="draft" {{ 'selected' if blog and blog.status == 'draft' else '' }}>Draft</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn">{{ 'Update' if blog else 'Add' }} Blog</button>
+        <a href="{{ url_for('admin_bp.blogs') }}" class="btn btn-outline">Cancel</a>
+    </form>
+</div>
+{% endblock %}

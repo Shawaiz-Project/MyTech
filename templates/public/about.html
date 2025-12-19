@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}About Us - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">About MyTech</h1>
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">We are a team of passionate developers, designers, and innovators dedicated to building future-ready software solutions.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--bg-card);">
+    <div class="container">
+        <h2 class="section-title">Our Story</h2>
+        <p style="max-width: 800px; margin: 0 auto; text-align: center; color: var(--text-secondary);">MyTech was founded with a vision to transform businesses through technology. We started as a small team and have grown into a leading software development company.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">What Makes Us Different</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Innovation</h3>
+                <p>We embrace cutting-edge technologies and innovative approaches to solve complex problems.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-check-circle"></i></div>
+                <h3>Quality Assurance</h3>
+                <p>Our rigorous testing ensures every product meets the highest quality standards.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-comments"></i></div>
+                <h3>Strong Communication</h3>
+                <p>We maintain transparent communication throughout the project lifecycle.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--bg-card);">
+    <div class="container">
+        <h2 class="section-title">Achievements & Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Years of Experience</h3>
+                    <p>10+</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Completed Projects</h3>
+                    <p>500+</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Happy Clients</h3>
+                    <p>300+</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-info">
+                    <h3>Team Members</h3>
+                    <p>{{ team|length if team else 50 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Our Workflow</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>1. Requirement Gathering</h3>
+                <p>We listen to your needs and understand your business goals.</p>
+            </div>
+            <div class="card">
+                <h3>2. Planning</h3>
+                <p>Strategic planning and architecture design for your project.</p>
+            </div>
+            <div class="card">
+                <h3>3. Design</h3>
+                <p>Creating intuitive and beautiful user interfaces.</p>
+            </div>
+            <div class="card">
+                <h3>4. Development</h3>
+                <p>Building robust and scalable solutions with modern tech.</p>
+            </div>
+            <div class="card">
+                <h3>5. Testing</h3>
+                <p>Rigorous quality assurance and testing procedures.</p>
+            </div>
+            <div class="card">
+                <h3>6. Launch</h3>
+                <p>Deployment and ongoing support for your success.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

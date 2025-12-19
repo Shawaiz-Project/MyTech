@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Blog - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Our Blog</h1>
+        <div class="card-grid">
+            {% for blog in blogs %}
+            <div class="card">
+                {% if blog.cover_image %}
+                <img src="{{ url_for('static', filename='uploads/blog/' + blog.cover_image) }}" alt="{{ blog.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+                {% endif %}
+                <h3>{{ blog.title }}</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">{{ blog.created_at.strftime('%B %d, %Y') }}</p>
+                {% if blog.tags %}
+                <p style="color: var(--icon-color); font-size: 0.85rem;">{{ blog.tags }}</p>
+                {% endif %}
+                <a href="{{ url_for('blog_detail', id=blog.id) }}" class="btn" style="margin-top: 1rem;">Read More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

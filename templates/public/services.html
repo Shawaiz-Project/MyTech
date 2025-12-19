@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Our Services - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Our Services</h1>
+        <div class="card-grid">
+            {% for service in services %}
+            <div class="card">
+                {% if service.icon %}
+                 <img src="{{ url_for('static', filename='uploads/services/' + service.icon) }}"
+                    alt="{{ service.title }}"
+                    style="width: 100%; height: 60%; margin-bottom: 1rem; border-radius: 0; object-fit: cover;">
+
+                {% endif %}
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.short_description }}</p>
+                <a href="{{ url_for('service_detail', id=service.id) }}" class="btn" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

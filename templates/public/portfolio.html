@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Portfolio - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Our Portfolio</h1>
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <a href="{{ url_for('portfolio', category='all') }}" class="btn btn-sm">All</a>
+            <a href="{{ url_for('portfolio', category='Web') }}" class="btn btn-sm">Web</a>
+            <a href="{{ url_for('portfolio', category='Mobile') }}" class="btn btn-sm">Mobile</a>
+            <a href="{{ url_for('portfolio', category='AI') }}" class="btn btn-sm">AI</a>
+            <a href="{{ url_for('portfolio', category='SaaS') }}" class="btn btn-sm">SaaS</a>
+        </div>
+        <div class="card-grid">
+            {% for project in projects %}
+            <div class="card">
+                {% if project.images %}
+                {% set image = project.images.split(',')[0] %}
+                <img src="{{ url_for('static', filename='uploads/projects/' + image) }}" alt="{{ project.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+                {% endif %}
+                <span style="color: var(--icon-color);">{{ project.category }}</span>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description[:100] }}...</p>
+                <a href="{{ url_for('project_detail', id=project.id) }}" class="btn" style="margin-top: 1rem;">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

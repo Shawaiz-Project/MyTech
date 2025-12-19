@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% block page_title %}{{ 'Edit' if technology else 'Add' }} Technology{% endblock %}
+{% block content %}
+<div class="form-card">
+    <form method="POST">
+        <div class="form-row">
+            <div class="form-group"><label>Name</label><input type="text" name="name" value="{{ technology.name if technology else '' }}" required></div>
+            <div class="form-group"><label>Category</label><select name="category"><option>Frontend</option><option>Backend</option><option>Mobile</option><option>Database</option><option>Cloud</option></select></div>
+        </div>
+        <div class="form-group"><label>Icon (Font Awesome class, e.g., react, python, node)</label><input type="text" name="icon" value="{{ technology.icon if technology else '' }}"></div>
+        <div class="form-group"><label>Description</label><textarea name="description" rows="3">{{ technology.description if technology else '' }}</textarea></div>
+        <button type="submit" class="btn">{{ 'Update' if technology else 'Add' }}</button>
+        <a href="{{ url_for('admin_bp.technologies') }}" class="btn btn-outline">Cancel</a>
+    </form>
+</div>
+{% endblock %}

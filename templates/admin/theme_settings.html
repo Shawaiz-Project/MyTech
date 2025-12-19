@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div class="admin-header">
+    <h1>Theme Customizer</h1>
+</div>
+<form method="POST" class="form-container">
+    <div class="form-group">
+        <label>Primary Color</label>
+        <input type="color" name="primary_color" value="{{ settings.primary_color }}" required>
+    </div>
+    <div class="form-group">
+        <label>Secondary Color</label>
+        <input type="color" name="secondary_color" value="{{ settings.secondary_color }}" required>
+    </div>
+    <div class="form-group">
+        <label>Border Radius</label>
+        <input type="text" name="border_radius" value="{{ settings.border_radius }}" placeholder="e.g., 8px">
+    </div>
+    <div class="form-group">
+        <label>Font Family</label>
+        <input type="text" name="font_family" value="{{ settings.font_family }}" placeholder="e.g., Inter">
+    </div>
+    <button type="submit" class="btn btn-primary">Save Theme</button>
+</form>
+{% endblock %}

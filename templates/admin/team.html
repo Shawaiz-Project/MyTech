@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Team Management{% endblock %}
+{% block content %}
+<div class="page-actions">
+    <h2>Team Members</h2>
+    <a href="{{ url_for('admin_bp.add_team') }}" class="btn"><i class="fas fa-plus"></i> Add Member</a>
+</div>
+<div class="table-container">
+    <table>
+        <thead><tr><th>Name</th><th>Designation</th><th>Skills</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for member in team %}
+            <tr>
+                <td>{{ member.name }}</td>
+                <td>{{ member.designation }}</td>
+                <td>{{ member.skills }}</td>
+                <td class="action-btns">
+                    <a href="{{ url_for('admin_bp.edit_team', id=member.id) }}" class="btn btn-sm btn-edit">Edit</a>
+                    <a href="{{ url_for('admin_bp.delete_team', id=member.id) }}" class="btn btn-sm btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

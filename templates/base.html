@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ settings.seo_title if settings else 'MyTech' }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ settings.meta_description if settings else 'MyTech delivers modern, scalable, and efficient digital solutions.' }}{% endblock %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
+    <style>
+            .logo {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        text-decoration: none;
+                    }
+
+            .logo img {
+                        height: 40px;
+                        width: auto;
+                    }
+
+            .logo span {
+                        font-size: 1.4rem;
+                        font-weight: 700;
+                        color: var(--text-color);
+                    }
+</style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <p class="loader-text">LOADING<span class="loader-dots"><span></span><span></span><span></span></span></p>
+        </div>
+    </div>
+    <header>
+        <nav class="container nav-wrapper">
+            <a href="{{ url_for('index') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MyTech Logo">
+                <span>{{ settings.website_name if settings else 'MyTech' }}</span>
+            </a>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+                <li><a href="{{ url_for('technologies') }}">Technologies</a></li>
+                <li><a href="{{ url_for('team') }}">Team</a></li>
+                <li><a href="{{ url_for('careers') }}">Careers</a></li>
+                <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li>
+                    <button class="theme-toggle" id="theme-toggle" style="color:#00BFFF">
+                        <i id="theme-icon" class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="container" style="margin-top: 2rem;">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>{{ settings.website_name if settings else 'MyTech' }}</h3>
+                    <p>{{ settings.meta_description if settings else 'We Build Future-Ready Software Solutions' }}</p>
+                    <div class="social-links">
+                        {% if settings and settings.facebook %}<a href="{{ settings.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>{% endif %}
+                        {% if settings and settings.linkedin %}<a href="{{ settings.linkedin }}" target="_blank"><i class="fab fa-linkedin"></i></a>{% endif %}
+                        {% if settings and settings.instagram %}<a href="{{ settings.instagram }}" target="_blank"><i class="fab fa-instagram"></i></a>{% endif %}
+                        {% if settings and settings.twitter %}<a href="{{ settings.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>{% endif %}
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="{{ url_for('about') }}">About Us</a>
+                    <a href="{{ url_for('services') }}">Services</a>
+                    <a href="{{ url_for('portfolio') }}">Portfolio</a>
+                    <a href="{{ url_for('careers') }}">Careers</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="{{ url_for('blog') }}">Blog</a>
+                    <a href="{{ url_for('faq') }}">FAQ</a>
+                    <a href="{{ url_for('testimonials') }}">Testimonials</a>
+                    <a href="{{ url_for('quote') }}">Get a Quote</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> {{ settings.contact_email if settings and settings.contact_email else 'contact@mytech.com' }}</p>
+                    <p><i class="fas fa-phone"></i> {{ settings.contact_phone if settings and settings.contact_phone else '+1 (555) 123-4567' }}</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>{{ settings.footer_text if settings and settings.footer_text else '© 2024 MyTech. All rights reserved.' }}</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
+    <script>
+        // Mobile Menu Toggle - Fixed Version
+        document.addEventListener('DOMContentLoaded', function() {
+          const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+          const navLinks = document.getElementById('nav-links');
+          
+          if (!mobileMenuToggle || !navLinks) return;
+          
+          mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+          });
+          
+          navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+              navLinks.classList.remove('active');
+              mobileMenuToggle.classList.remove('active');
+            });
+          });
+          
+          document.addEventListener('click', function(e) {
+            if (!e.target.closest('header')) {
+              navLinks.classList.remove('active');
+              mobileMenuToggle.classList.remove('active');
+            }
+          });
+        });
+
+        // WhatsApp Button Handler
+        function openWhatsApp() {
+          const phone = document.getElementById('whatsapp-btn').dataset.phone;
+          const message = encodeURIComponent(document.getElementById('whatsapp-btn').dataset.message);
+          window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
+    
+    <!-- WhatsApp Floating Button - Always show with defaults when database is down -->
+    <div id="whatsapp-container" class="whatsapp-container whatsapp-{{ settings.whatsapp_position if settings else 'right' }}" style="--icon-size: {{ settings.whatsapp_icon_size if settings else '60px' }};">
+        <button id="whatsapp-btn" class="whatsapp-btn" data-phone="{{ settings.whatsapp_number if settings else '+1234567890' }}" data-message="{{ settings.whatsapp_message if settings else 'Hello! I would like to know more about your services.' }}" onclick="openWhatsApp()" title="Chat with us on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+    </div>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

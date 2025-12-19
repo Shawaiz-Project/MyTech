@@ -1,0 +1,26 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Jobs Management{% endblock %}
+{% block content %}
+<div class="page-actions">
+    <h2>All Jobs</h2>
+    <a href="{{ url_for('admin_bp.add_job') }}" class="btn"><i class="fas fa-plus"></i> Add Job</a>
+</div>
+<div class="table-container">
+    <table>
+        <thead><tr><th>Title</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.job_type }}</td>
+                <td><span class="status-badge status-{{ job.status }}">{{ job.status }}</span></td>
+                <td class="action-btns">
+                    <a href="{{ url_for('admin_bp.edit_job', id=job.id) }}" class="btn btn-sm btn-edit">Edit</a>
+                    <a href="{{ url_for('admin_bp.delete_job', id=job.id) }}" class="btn btn-sm btn-delete" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

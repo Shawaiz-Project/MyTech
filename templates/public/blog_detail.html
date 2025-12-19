@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ blog.title }} - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">{{ blog.title }}</h1>
+        <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">{{ blog.created_at.strftime('%B %d, %Y') }}</p>
+        <div style="max-width: 800px; margin: 0 auto;">
+            {% if blog.cover_image %}
+            <img src="{{ url_for('static', filename='uploads/blog/' + blog.cover_image) }}" alt="{{ blog.title }}" style="width: 100%; border-radius: 12px; margin-bottom: 2rem;">
+            {% endif %}
+            <div style="line-height: 1.8;">{{ blog.content|safe }}</div>
+        </div>
+    </div>
+</section>
+{% endblock %}

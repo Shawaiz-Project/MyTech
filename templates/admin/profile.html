@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Admin Profile{% endblock %}
+{% block content %}
+<div class="form-card">
+    <form method="POST">
+        <div class="form-group"><label>Username</label><input type="text" name="username" value="{{ current_user.username }}" required></div>
+        <div class="form-group"><label>Email</label><input type="email" name="email" value="{{ current_user.email }}" required></div>
+        <div class="form-group"><label>New Password (leave blank to keep current)</label><input type="password" name="new_password"></div>
+        <button type="submit" class="btn">Update Profile</button>
+    </form>
+</div>
+{% endblock %}

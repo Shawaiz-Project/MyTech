@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Error{% endblock %}
+{% block content %}
+<div style="text-align: center; padding: 3rem; background: var(--bg-card); border-radius: 12px; margin: 2rem 0;">
+    <h2 style="color: #ff6b6b; margin-bottom: 1rem;">⚠️ Database Error</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">{{ message or 'The database connection is temporarily unavailable.' }}</p>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">Please try again in a few moments.</p>
+    <a href="{{ url_for('index') }}" class="btn">Back to Home</a>
+</div>
+{% endblock %}

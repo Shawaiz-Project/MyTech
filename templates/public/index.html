@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1>{{ settings.hero_title if settings else 'We Build Future-Ready Software Solutions' }}</h1>
+        <p>{{ settings.hero_subtitle if settings else 'MyTech delivers modern, scalable, and efficient digital solutions that transform your business and accelerate growth.' }}</p>
+        <a href="{{ settings.hero_cta_url if settings else '/quote' }}" class="btn">{{ settings.hero_cta_text if settings else 'Get a Quote' }}</a>
+        <a href="{{ settings.hero_secondary_cta_url if settings else '/services' }}" class="btn btn-outline">{{ settings.hero_secondary_cta_text if settings else 'Explore Services' }}</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="card-grid">
+            {% for service in services %}
+            <div class="card">
+                {% if service.icon %}
+                <img src="{{ url_for('static', filename='uploads/services/' + service.icon) }}" alt="{{ service.title }}" style="width: 60px; height: 60px; margin-bottom: 1rem;">
+                {% else %}
+                <div class="card-icon"><i class="fas fa-code"></i></div>
+                {% endif %}
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.short_description }}</p>
+                <a href="{{ url_for('service_detail', id=service.id) }}" class="btn" style="margin-top: 1rem;">Learn More</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--bg-card);">
+    <div class="container">
+        <h2 class="section-title">Why Choose MyTech</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-users-cog"></i></div>
+                <h3>Skilled Developers</h3>
+                <p>Our team consists of highly skilled developers with expertise in modern technologies.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Fast Delivery</h3>
+                <p>We deliver projects on time without compromising quality and performance.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-headset"></i></div>
+                <h3>24/7 Support</h3>
+                <p>Round-the-clock support to ensure your applications run smoothly.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Modern Technologies</h3>
+                <p>We use cutting-edge technologies to build scalable and secure solutions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="card-grid">
+            {% for project in projects %}
+            <div class="card">
+                {% if project.images %}
+                    {% set image = project.images.split(',')[0] %}
+                    <img src="{{ url_for('static', filename='uploads/projects/' + image) }}" alt="{{ project.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
+                {% endif %}
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description[:100] }}...</p>
+                <span style="color: var(--icon-color); font-size: 0.9rem;">{{ project.category }}</span>
+                <a href="{{ url_for('project_detail', id=project.id) }}" class="btn" style="margin-top: 1rem;">View Case Study</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: var(--bg-card);">
+    <div class="container">
+        <h2 class="section-title">Technologies We Use</h2>
+        <div class="tech-grid">
+            {% for tech in technologies %}
+            <div class="tech-item">
+                <i class="fab fa-{{ tech.icon if tech.icon else 'code' }}"></i>
+                <h4>{{ tech.name }}</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Client Testimonials</h2>
+        <div class="testimonial-slider">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                {% if testimonial.client_image %}
+                <img src="{{ url_for('static', filename='uploads/testimonials/' + testimonial.client_image) }}" alt="{{ testimonial.client_name }}">
+                {% endif %}
+                <div class="rating">
+                    {% for i in range(testimonial.rating) %}
+                    <i class="fas fa-star"></i>
+                    {% endfor %}
+                </div>
+                <p>"{{ testimonial.feedback }}"</p>
+                <h4 style="color: var(--text-heading); margin-top: 1rem;">{{ testimonial.client_name }}</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: linear-gradient(135deg, var(--btn-primary) 0%, var(--icon-color) 100%); color: white; text-align: center;">
+    <div class="container">
+        <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">Ready to Start Your Project?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">Let's bring your vision to life with cutting-edge technology.</p>
+        <a href="{{ url_for('quote') }}" class="btn" style="background: white; color: var(--btn-primary);">Get a Free Quote</a>
+    </div>
+</section>
+{% endblock %}

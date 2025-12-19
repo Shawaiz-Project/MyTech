@@ -1,0 +1,91 @@
+{% extends "admin/base.html" %}
+{% block page_title %}Site Settings{% endblock %}
+{% block content %}
+<div class="form-card">
+    <form method="POST">
+        <div class="form-group"><label>Website Name</label><input type="text" name="website_name" value="{{ settings.website_name }}"></div>
+        <div class="form-group"><label>SEO Title</label><input type="text" name="seo_title" value="{{ settings.seo_title }}"></div>
+        <div class="form-group"><label>Meta Description</label><textarea name="meta_description" rows="3">{{ settings.meta_description }}</textarea></div>
+        <div class="form-row">
+            <div class="form-group"><label>Contact Email</label><input type="email" name="contact_email" value="{{ settings.contact_email }}"></div>
+            <div class="form-group"><label>Contact Phone</label><input type="text" name="contact_phone" value="{{ settings.contact_phone }}"></div>
+        </div>
+        <h3>Social Media</h3>
+        <div class="form-row">
+            <div class="form-group"><label>Facebook</label><input type="url" name="facebook" value="{{ settings.facebook }}"></div>
+            <div class="form-group"><label>LinkedIn</label><input type="url" name="linkedin" value="{{ settings.linkedin }}"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group"><label>Instagram</label><input type="url" name="instagram" value="{{ settings.instagram }}"></div>
+            <div class="form-group"><label>Twitter</label><input type="url" name="twitter" value="{{ settings.twitter }}"></div>
+        </div>
+        <div class="form-group"><label>Footer Text</label><textarea name="footer_text" rows="2">{{ settings.footer_text }}</textarea></div>
+        
+        <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);">
+        
+        <h3>WhatsApp Floating Button</h3>
+        <div class="form-group">
+            <label style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" name="whatsapp_enabled" {% if settings.whatsapp_enabled %}checked{% endif %} style="width: 20px; height: 20px; cursor: pointer;">
+                <span>Enable WhatsApp Button</span>
+            </label>
+        </div>
+        <div class="form-row">
+            <div class="form-group"><label>WhatsApp Number</label><input type="text" name="whatsapp_number" placeholder="+1234567890" value="{{ settings.whatsapp_number }}"></div>
+            <div class="form-group">
+                <label>Button Position</label>
+                <select name="whatsapp_position" style="padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main);">
+                    <option value="left" {% if settings.whatsapp_position == 'left' %}selected{% endif %}>Left</option>
+                    <option value="right" {% if settings.whatsapp_position == 'right' %}selected{% endif %}>Right</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Icon Size</label>
+            <select name="whatsapp_icon_size" style="padding: 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-main);">
+                <option value="40px" {% if settings.whatsapp_icon_size == '40px' %}selected{% endif %}>Small (40px)</option>
+                <option value="60px" {% if settings.whatsapp_icon_size == '60px' %}selected{% endif %}>Medium (60px)</option>
+                <option value="80px" {% if settings.whatsapp_icon_size == '80px' %}selected{% endif %}>Large (80px)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Default Message</label>
+            <textarea name="whatsapp_message" rows="3">{{ settings.whatsapp_message }}</textarea>
+        </div>
+        
+        <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--border-color);">
+        
+        <h3>Hero Section (Home Page)</h3>
+        <div class="form-group">
+            <label>Hero Title</label>
+            <input type="text" name="hero_title" placeholder="We Build Future-Ready Software Solutions" value="{{ settings.hero_title }}">
+        </div>
+        <div class="form-group">
+            <label>Hero Subtitle</label>
+            <textarea name="hero_subtitle" rows="3" placeholder="Enter hero section description">{{ settings.hero_subtitle }}</textarea>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Primary Button Text</label>
+                <input type="text" name="hero_cta_text" placeholder="Get a Quote" value="{{ settings.hero_cta_text }}">
+            </div>
+            <div class="form-group">
+                <label>Primary Button URL</label>
+                <input type="text" name="hero_cta_url" placeholder="/quote" value="{{ settings.hero_cta_url }}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Secondary Button Text</label>
+                <input type="text" name="hero_secondary_cta_text" placeholder="Explore Services" value="{{ settings.hero_secondary_cta_text }}">
+            </div>
+            <div class="form-group">
+                <label>Secondary Button URL</label>
+                <input type="text" name="hero_secondary_cta_url" placeholder="/services" value="{{ settings.hero_secondary_cta_url }}">
+            </div>
+        </div>
+        
+        <button type="submit" class="btn">Update Settings</button>
+    </form>
+</div>
+{% endblock %}

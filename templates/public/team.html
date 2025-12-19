@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Our Team - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Meet Our Team</h1>
+        <div class="card-grid">
+            {% for member in team %}
+            <div class="team-card">
+                {% if member.profile_image %}
+                <div class="team-image-wrapper">
+                    <img src="{{ url_for('static', filename='uploads/team/' + member.profile_image) }}" alt="{{ member.name }}" class="team-image">
+                </div>
+                {% endif %}
+                <h3 class="team-name">{{ member.name }}</h3>
+                <p class="team-designation">{{ member.designation }}</p>
+                <div class="skills-container">
+                    {% if member.skills %}
+                        {% for skill in member.skills.split(',') %}
+                        <span class="skill-badge">{{ skill.strip() }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="social-links" style="justify-content: center; margin-top: 1.5rem;">
+                    {% if member.linkedin %}<a href="{{ member.linkedin }}" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>{% endif %}
+                    {% if member.github %}<a href="{{ member.github }}" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>{% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "admin/base.html" %}
+{% block page_title %}{{ 'Edit' if project else 'Add' }} Project{% endblock %}
+{% block content %}
+<div class="form-card">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" value="{{ project.title if project else '' }}" required>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Client</label>
+                <input type="text" name="client" value="{{ project.client if project else '' }}">
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select name="category">
+                    <option value="Web" {{ 'selected' if project and project.category == 'Web' else '' }}>Web</option>
+                    <option value="Mobile" {{ 'selected' if project and project.category == 'Mobile' else '' }}>Mobile</option>
+                    <option value="AI" {{ 'selected' if project and project.category == 'AI' else '' }}>AI</option>
+                    <option value="SaaS" {{ 'selected' if project and project.category == 'SaaS' else '' }}>SaaS</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" rows="4">{{ project.description if project else '' }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Features</label>
+            <textarea name="features" rows="4">{{ project.features if project else '' }}</textarea>
+        </div>
+        <div class="form-group">
+            <label>Technologies</label>
+            <input type="text" name="technologies" value="{{ project.technologies if project else '' }}">
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Project Images</label>
+                <input type="file" name="images" multiple accept="image/*">
+            </div>
+            <div class="form-group">
+                <label>Project Link</label>
+                <input type="url" name="project_link" value="{{ project.project_link if project else '' }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Status</label>
+            <select name="status">
+                <option value="active" {{ 'selected' if project and project.status == 'active' else '' }}>Active</option>
+                <option value="inactive" {{ 'selected' if project and project.status == 'inactive' else '' }}>Inactive</option>
+            </select>
+        </div>
+        <button type="submit" class="btn">{{ 'Update' if project else 'Add' }} Project</button>
+        <a href="{{ url_for('admin_bp.projects') }}" class="btn btn-outline">Cancel</a>
+    </form>
+</div>
+{% endblock %}

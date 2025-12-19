@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Testimonials - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Client Testimonials</h1>
+        <div class="card-grid">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                {% if testimonial.client_image %}
+                <img src="{{ url_for('static', filename='uploads/testimonials/' + testimonial.client_image) }}" alt="{{ testimonial.client_name }}">
+                {% endif %}
+                <div class="rating">
+                    {% for i in range(testimonial.rating) %}
+                    <i class="fas fa-star"></i>
+                    {% endfor %}
+                </div>
+                <p>"{{ testimonial.feedback }}"</p>
+                <h4 style="color: var(--text-heading); margin-top: 1rem;">{{ testimonial.client_name }}</h4>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

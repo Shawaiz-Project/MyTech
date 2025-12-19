@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Technologies - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Technologies We Use</h1>
+        <div class="tech-grid">
+            {% for tech in technologies %}
+            <div class="tech-item">
+                <i class="fab fa-{{ tech.icon if tech.icon else 'code' }}"></i>
+                <h4>{{ tech.name }}</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">{{ tech.category }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

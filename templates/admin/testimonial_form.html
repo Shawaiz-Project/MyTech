@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% block page_title %}{{ 'Edit' if testimonial else 'Add' }} Testimonial{% endblock %}
+{% block content %}
+<div class="form-card">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="form-group"><label>Client Name</label><input type="text" name="client_name" value="{{ testimonial.client_name if testimonial else '' }}" required></div>
+        <div class="form-group"><label>Feedback</label><textarea name="feedback" rows="4">{{ testimonial.feedback if testimonial else '' }}</textarea></div>
+        <div class="form-group"><label>Rating</label><select name="rating"><option value="5">5</option><option value="4">4</option><option value="3">3</option></select></div>
+        <div class="form-group"><label>Client Image</label><input type="file" name="client_image" accept="image/*"></div>
+        <button type="submit" class="btn">{{ 'Update' if testimonial else 'Add' }}</button>
+        <a href="{{ url_for('admin_bp.testimonials') }}" class="btn btn-outline">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}FAQ - MyTech{% endblock %}
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Frequently Asked Questions</h1>
+        <div style="max-width: 800px; margin: 0 auto;">
+            {% for faq in faqs %}
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--text-heading); margin-bottom: 1rem;">{{ faq.question }}</h3>
+                <p>{{ faq.answer }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% block page_title %}FAQs{% endblock %}
+{% block content %}
+<div class="page-actions">
+    <h2>All FAQs</h2>
+    <a href="{{ url_for('admin_bp.add_faq') }}" class="btn"><i class="fas fa-plus"></i> Add</a>
+</div>
+<div class="table-container">
+    <table>
+        <thead><tr><th>Question</th><th>Answer</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for faq in faqs %}
+            <tr>
+                <td>{{ faq.question[:50] }}...</td>
+                <td>{{ faq.answer[:50] }}...</td>
+                <td class="action-btns">
+                    <a href="{{ url_for('admin_bp.edit_faq', id=faq.id) }}" class="btn btn-sm btn-edit">Edit</a>
+                    <a href="{{ url_for('admin_bp.delete_faq', id=faq.id) }}" class="btn btn-sm btn-delete" onclick="return confirm('Delete?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

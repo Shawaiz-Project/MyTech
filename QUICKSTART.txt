@@ -1,0 +1,85 @@
+╔════════════════════════════════════════════════════════════════╗
+║          MyTech Website - Quick Local Setup Guide             ║
+╚════════════════════════════════════════════════════════════════╝
+
+STEP 1: Install Python (if not already installed)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Download from: https://www.python.org/downloads/
+Make sure to check "Add Python to PATH" during installation
+
+STEP 2: Open Terminal in Project Folder
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Navigate to your mytech-website folder
+Right-click and select "Open Terminal Here" (or "Open PowerShell Here" on Windows)
+
+STEP 3: Create Virtual Environment
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Windows:
+    python -m venv venv
+    venv\Scripts\activate
+
+macOS/Linux:
+    python3 -m venv venv
+    source venv/bin/activate
+
+You should see (venv) at the beginning of your terminal line
+
+STEP 4: Install Dependencies
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Copy and paste this command:
+    pip install -r requirements.txt
+
+This installs Flask, database, and all required packages
+
+STEP 5: Run the Website
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Copy and paste this command:
+    python main.py
+
+You should see:
+    🚀 MyTech Website Starting...
+    📍 Website Available At:
+       Home:        http://localhost:5000/
+       Admin Login: http://localhost:5000/admin/login
+
+STEP 6: Open Website in Browser
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Open your web browser and go to:
+    http://localhost:5000/
+
+The website should load! 🎉
+
+STEP 7: Login to Admin Panel
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Go to: http://localhost:5000/admin/login
+
+Username: Shawaiz
+Password: Shawaiz231980079
+
+Click Login
+
+STEP 8: IMPORTANT - Change Your Password!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+In admin panel, click "Profile" → "Change Password"
+Enter a new secure password and save
+
+DONE! ✅
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your website is now running locally! You can:
+✓ View all public pages
+✓ Add services, projects, blog posts
+✓ Manage team members
+✓ View contact messages
+✓ Customize website settings
+✓ Control WhatsApp button
+✓ Edit hero section
+
+To stop the server: Press CTRL+C in the terminal
+
+To restart: Run "python main.py" again
+
+For detailed documentation: See README.md or Useweb.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Need help? Check TROUBLESHOOT.txt or README.md

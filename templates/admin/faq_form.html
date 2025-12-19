@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% block page_title %}{{ 'Edit' if faq else 'Add' }} FAQ{% endblock %}
+{% block content %}
+<div class="form-card">
+    <form method="POST">
+        <div class="form-group"><label>Question</label><input type="text" name="question" value="{{ faq.question if faq else '' }}" required></div>
+        <div class="form-group"><label>Answer</label><textarea name="answer" rows="4">{{ faq.answer if faq else '' }}</textarea></div>
+        <button type="submit" class="btn">{{ 'Update' if faq else 'Add' }}</button>
+        <a href="{{ url_for('admin_bp.faqs') }}" class="btn btn-outline">Cancel</a>
+    </form>
+</div>
+{% endblock %}

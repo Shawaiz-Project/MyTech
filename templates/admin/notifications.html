@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<div class="admin-header">
+    <h1>Notifications ({{ unread_count }} unread)</h1>
+</div>
+<div class="admin-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Message</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for notif in notifications %}
+            <tr style="background: {% if not notif.is_read %}#f0f8ff{% endif %};">
+                <td>{{ notif.title }}</td>
+                <td>{{ notif.message[:50] }}...</td>
+                <td>{{ notif.type }}</td>
+                <td>{% if not notif.is_read %}<strong>Unread</strong>{% else %}Read{% endif %}</td>
+                <td>
+                    {% if not notif.is_read %}<a href="{{ url_for('adv_bp.mark_notification_read', id=notif.id) }}" class="btn-small">Mark Read</a>{% endif %}
+                    <form method="POST" action="{{ url_for('adv_bp.delete_notification', id=notif.id) }}" style="display:inline;">
+                        <button type="submit" class="btn-small btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
